@@ -124,7 +124,7 @@ function Row({ label, value }) {
   return (
     <div className="flex justify-between gap-3 border-b pb-1.5 last:border-0" style={{ borderColor: 'var(--border-color)' }}>
       <span className="text-muted">{label}</span>
-      <span className="text-right font-semibold">{value}</span>
+      <span className="min-w-0 break-words text-right font-semibold">{value}</span>
     </div>
   )
 }

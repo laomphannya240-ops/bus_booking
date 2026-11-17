@@ -41,11 +41,11 @@ export default function BusCard({ schedule, onSelect }) {
           </div>
         </div>
 
-        <div className="grid flex-1 grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-5">
-          <div>
+        <div className="grid flex-1 grid-cols-[minmax(0,auto)_minmax(0,1fr)_minmax(0,auto)] items-center gap-3 sm:gap-5">
+          <div className="min-w-0">
             <p className="text-xl font-extrabold tracking-tight sm:text-2xl">{schedule.departureTime}</p>
-            <p className="mt-0.5 text-xs font-semibold text-muted">{provinceName(route?.fromProvinceId, language)}</p>
-            <p className="mt-0.5 flex items-center gap-1 text-[11px] text-muted"><MapPin size={10} /> {fromStation ? stationName(fromStation.id, language, stations) : '—'}</p>
+            <p className="mt-0.5 truncate text-xs font-semibold text-muted">{provinceName(route?.fromProvinceId, language)}</p>
+            <p className="mt-0.5 flex items-center gap-1 text-[11px] text-muted"><MapPin size={10} className="shrink-0" /> <span className="truncate">{fromStation ? stationName(fromStation.id, language, stations) : '—'}</span></p>
           </div>
 
           <div className="flex flex-col items-center">
@@ -62,10 +62,10 @@ export default function BusCard({ schedule, onSelect }) {
             <p className="mt-1 text-[11px] text-muted">{formatDate(schedule.date, language, { day: 'numeric', month: 'short' })}</p>
           </div>
 
-          <div className="text-right">
+          <div className="min-w-0 text-right">
             <p className="text-xl font-extrabold tracking-tight sm:text-2xl">{schedule.arrivalTime}</p>
-            <p className="mt-0.5 text-xs font-semibold text-muted">{provinceName(route?.toProvinceId, language)}</p>
-            <p className="mt-0.5 flex items-center justify-end gap-1 text-[11px] text-muted"><MapPin size={10} /> {toStation ? stationName(toStation.id, language, stations) : '—'}</p>
+            <p className="mt-0.5 truncate text-xs font-semibold text-muted">{provinceName(route?.toProvinceId, language)}</p>
+            <p className="mt-0.5 flex items-center justify-end gap-1 text-[11px] text-muted"><MapPin size={10} className="shrink-0" /> <span className="truncate">{toStation ? stationName(toStation.id, language, stations) : '—'}</span></p>
           </div>
         </div>
 

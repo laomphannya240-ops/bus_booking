@@ -112,10 +112,10 @@ export default function PaymentPage() {
               <Badge tone="brand">{t('payment.khqr')}</Badge>
             </div>
 
-            <div className="mt-5 grid gap-6 sm:grid-cols-[220px_1fr] sm:items-center">
-              <div className="rounded-2xl border p-3" style={{ borderColor: 'var(--border-color)' }}>
+            <div className="mt-5 grid gap-6 sm:grid-cols-[220px_minmax(0,1fr)] sm:items-center">
+              <div className="mx-auto w-full max-w-[260px] rounded-2xl border p-3 sm:max-w-none" style={{ borderColor: 'var(--border-color)' }}>
                 {expired ? (
-                  <div className="flex h-[220px] flex-col items-center justify-center gap-3 text-center">
+                  <div className="flex h-[200px] flex-col items-center justify-center gap-3 text-center sm:h-[220px]">
                     <Clock3 size={30} className="text-amber-500" />
                     <p className="text-sm font-bold">{t('payment.expired')}</p>
                     <Button size="sm" icon={RefreshCw} onClick={() => { reset(); toast.info(t('payment.refresh')) }}>{t('payment.refresh')}</Button>

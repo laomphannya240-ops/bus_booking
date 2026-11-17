@@ -67,6 +67,25 @@ export default function CrudPage({
   const openAdd = () => { setEditing(null); setFormOpen(true) }
   const openEdit = (item) => { setEditing(item); setFormOpen(true) }
 
+  const showActions = !readOnly || Boolean(extraRowActions)
+  const cellValue = (column, item) => column.render ? column.render(item) : item[column.key]
+
+  const actionsFor = (item) => (
+    <div className="flex items-center justify-end gap-1">
+      {extraRowActions?.(item)}
+      {!readOnly && (
+        <>
+          <button type="button" onClick={() => openEdit(item)} className="btn-ghost !p-2" title={t('common.edit')} aria-label={t('common.edit')}>
+            <Pencil size={15} />
+          </button>
+          <button type="button" onClick={() => remove(item)} className="btn-ghost !p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10" title={t('common.delete')} aria-label={t('common.delete')}>
+            <Trash2 size={15} />
+          </button>
+        </>
+      )}
+    </div>
+  )
+
   const submit = async (values) => {
     if (editing && onUpdate) await onUpdate(editing.id, values)
     else if (onAdd) await onAdd(values)
@@ -114,42 +133,58 @@ export default function CrudPage({
         {visible.length === 0 ? (
           <EmptyState title={t('common.noResults')} description={t('common.tryAgain')} />
         ) : (
-          <div className="overflow-x-auto">
+          <>
+            <div className="hidden overflow-x-auto md:block">
             <table className="table-base">
               <thead>
                 <tr>
                   {columns.map((column) => <th key={column.key}>{column.label}</th>)}
-                  {(!readOnly || extraRowActions) && <th className="text-right">{t('common.actions')}</th>}
+                  {showActions && <th className="text-right">{t('common.actions')}</th>}
                 </tr>
               </thead>
               <tbody>
                 {visible.map((item, index) => (
                   <tr key={item.id || index}>
                     {columns.map((column) => (
-                      <td key={column.key}>{column.render ? column.render(item) : item[column.key]}</td>
+                      <td key={column.key}>{cellValue(column, item)}</td>
                     ))}
-                    {(!readOnly || extraRowActions) && (
-                      <td>
-                        <div className="flex items-center justify-end gap-1">
-                          {extraRowActions?.(item)}
-                          {!readOnly && (
-                            <>
-                              <button type="button" onClick={() => openEdit(item)} className="btn-ghost !p-2" title={t('common.edit')} aria-label={t('common.edit')}>
-                                <Pencil size={15} />
-                              </button>
-                              <button type="button" onClick={() => remove(item)} className="btn-ghost !p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10" title={t('common.delete')} aria-label={t('common.delete')}>
-                                <Trash2 size={15} />
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    )}
+                    {showActions && <td>{actionsFor(item)}</td>}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
+          <div className="md:hidden">
+            {visible.map((item, index) => (
+              <div key={item.id || index} className="space-y-3 border-t border-[var(--border-color)] p-4 first:border-t-0">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0 space-y-1">
+                    {columns.slice(0, 2).map((column, columnIndex) => (
+                      <div
+                        key={column.key}
+                        className={columnIndex === 0 ? 'break-words text-sm font-bold' : 'break-words text-xs text-muted'}
+                      >
+                        {cellValue(column, item)}
+                      </div>
+                    ))}
+                  </div>
+                  {showActions && actionsFor(item)}
+                </div>
+                {columns.length > 2 && (
+                  <dl className="grid grid-cols-2 gap-x-3 gap-y-2 border-t pt-3" style={{ borderColor: 'var(--border-color)' }}>
+                    {columns.slice(2).map((column) => (
+                      <div key={column.key} className="min-w-0">
+                        <dt className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted">{column.label}</dt>
+                        <dd className="break-words text-xs font-medium">{cellValue(column, item)}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+              </div>
+            ))}
+          </div>
+          </>
         )}
         <Pagination page={page} totalPages={totalPages} onChange={setPage} />
       </Card>

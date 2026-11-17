@@ -56,8 +56,8 @@ export default function Navbar() {
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-900 text-white shadow-sm">
             <BusFront size={20} />
           </span>
-          <span className="leading-tight">
-            <span className="block text-sm font-extrabold tracking-tight sm:text-base">CAMBODIA BUS</span>
+          <span className="min-w-0 leading-tight">
+            <span className="block truncate text-sm font-extrabold tracking-tight sm:text-base">CAMBODIA BUS</span>
             <span className="hidden text-[10px] font-medium text-muted sm:block">{t('brand.tagline')}</span>
           </span>
         </Link>
@@ -80,7 +80,7 @@ export default function Navbar() {
               aria-expanded={languageOpen}
             >
               <Globe2 size={17} />
-              <span className="text-xs font-bold uppercase">{language}</span>
+              <span className="hidden text-xs font-bold uppercase min-[380px]:inline">{language}</span>
               <ChevronDown size={13} />
             </button>
             {languageOpen && (
@@ -124,7 +124,7 @@ export default function Navbar() {
               {userOpen && (
                 <>
                   <button type="button" className="fixed inset-0 z-10 cursor-default" aria-label="Close" onClick={() => setUserOpen(false)} />
-                  <div className="absolute right-0 z-20 mt-2 w-56 overflow-hidden rounded-xl p-1 shadow-float" style={{ background: 'var(--surface)', border: '1px solid var(--border-color)' }}>
+                  <div className="absolute right-0 z-20 mt-2 w-56 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl p-1 shadow-float" style={{ background: 'var(--surface)', border: '1px solid var(--border-color)' }}>
                     <div className="border-b px-3 py-2.5" style={{ borderColor: 'var(--border-color)' }}>
                       <p className="truncate text-sm font-bold">{user.name?.en || user.name}</p>
                       <p className="truncate text-xs text-muted">{user.email}</p>
@@ -162,7 +162,7 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t px-4 py-3 lg:hidden" style={{ borderColor: 'var(--border-color)', background: 'var(--surface)' }}>
+        <div className="no-scrollbar max-h-[calc(100vh-4rem)] overflow-y-auto border-t px-4 py-3 lg:hidden" style={{ borderColor: 'var(--border-color)', background: 'var(--surface)' }}>
           <nav className="flex flex-col gap-1">
             {links.map((link) => (
               <NavLink key={link.to} to={link.to} end={link.end} className={navItemClass} onClick={closeMenus}>

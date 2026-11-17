@@ -18,7 +18,7 @@ export default function Footer() {
 
   return (
     <footer className="no-print mt-auto border-t" style={{ background: 'var(--surface)', borderColor: 'var(--border-color)' }}>
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 sm:py-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:px-8">
         <div>
           <div className="flex items-center gap-2.5">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-900 text-white"><BusFront size={21} /></span>

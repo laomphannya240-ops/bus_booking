@@ -37,7 +37,7 @@ export default function PaymentQR({ payload, size = 220 }) {
   )
 
   return (
-    <svg viewBox="-4 -4 108 108" width={size} height={size} className="mx-auto" role="img" aria-label="Demo KHQR preview">
+    <svg viewBox="-4 -4 108 108" width={size} height={size} className="mx-auto h-auto w-full max-w-[220px]" role="img" aria-label="Demo KHQR preview">
       <rect x="-4" y="-4" width="108" height="108" fill="#ffffff" />
       {grid.map((row, rowIndex) =>
         row.map((value, colIndex) =>

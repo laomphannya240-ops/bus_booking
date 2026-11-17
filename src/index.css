@@ -73,6 +73,20 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -137,7 +151,7 @@ a {
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 select-none disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex touch-manipulation items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-200 select-none disabled:opacity-50 disabled:pointer-events-none;
   }
 
   .btn-primary {
@@ -202,7 +216,7 @@ a {
   }
 
   .input-base {
-    @apply w-full rounded-xl px-3.5 py-2.5 text-sm outline-none transition-all duration-200;
+    @apply w-full rounded-xl px-3.5 py-2.5 text-base outline-none transition-all duration-200 sm:text-sm;
     background: var(--surface);
     color: var(--text-main);
     border: 1px solid var(--border-color);
@@ -327,6 +341,42 @@ a {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Booking search keeps from/swap/to on one row on phones, then expands to a
+   single search bar on wide desktop screens. */
+.search-form-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-areas:
+    'from swap to'
+    'date date passengers';
+}
+
+.search-from { grid-area: from; }
+.search-swap { grid-area: swap; }
+.search-to { grid-area: to; }
+.search-date { grid-area: date; }
+.search-passengers { grid-area: passengers; }
+
+.search-form-grid > * {
+  min-width: 0;
+}
+
+@media (min-width: 1280px) {
+  .search-form-grid {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: 'from swap to date passengers';
+    align-items: end;
+  }
+}
+
+@media (max-width: 640px) {
+  .table-base th,
+  .table-base td {
+    padding: 0.625rem 0.75rem;
+  }
 }
 
 @media print {

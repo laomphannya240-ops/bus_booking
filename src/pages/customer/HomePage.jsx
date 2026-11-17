@@ -53,7 +53,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative overflow-hidden bg-navy-950 pb-32 pt-12 text-white sm:pt-16">
+      <section className="relative overflow-hidden bg-navy-950 pb-28 pt-12 text-white sm:pb-32 sm:pt-16">
         <div className="hero-pattern absolute inset-0" />
         <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand-600/20 blur-3xl" />
         <div className="absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-sky-500/10 blur-3xl" />
@@ -62,7 +62,7 @@ export default function HomePage() {
             <span className="chip border border-white/15 bg-white/10 text-white">
               <ShieldCheck size={13} className="text-brand-300" /> {t('home.badge')}
             </span>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
               {t('home.heroTitle1')}<br />
               <span className="text-brand-300">{t('home.heroTitle2')}</span>
             </h1>
@@ -107,8 +107,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative mx-auto -mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Card className="p-5 shadow-float sm:p-6">
+      <section className="relative mx-auto -mt-20 max-w-7xl px-4 sm:-mt-24 sm:px-6 lg:px-8">
+        <Card className="p-4 shadow-float sm:p-6">
           <div className="mb-4 flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-50 text-brand-600 dark:bg-brand-900/40 dark:text-brand-300"><MapPinned size={17} /></span>
             <h2 className="text-base font-extrabold">{t('home.searchTitle')}</h2>
@@ -181,8 +181,8 @@ export default function HomePage() {
           <SectionHeader eyebrow={t('home.statsSubtitle')} title={t('home.statsTitle')} align="center" />
           <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center">
-                <p className="text-3xl font-extrabold text-brand-300">{stat.value}</p>
+              <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center sm:p-5">
+                <p className="text-2xl font-extrabold text-brand-300 sm:text-3xl">{stat.value}</p>
                 <p className="mt-1 text-xs text-white/60">{stat.label}</p>
               </div>
             ))}
@@ -216,12 +216,12 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-6 rounded-3xl bg-brand-600 px-6 py-8 text-white sm:px-10">
+        <div className="flex flex-wrap items-center justify-between gap-6 rounded-3xl bg-brand-600 px-5 py-8 text-white sm:px-10">
           <div>
             <h2 className="text-2xl font-extrabold">{t('home.ctaTitle')}</h2>
             <p className="mt-1.5 text-sm text-white/80">{t('home.ctaSubtitle')}</p>
           </div>
-          <Button variant="outline" to="/search" size="lg" className="!border-white !bg-white !text-brand-700">
+          <Button variant="outline" to="/search" size="lg" className="w-full !border-white !bg-white !text-brand-700 sm:w-auto">
             {t('home.ctaButton')} <ArrowRight size={16} />
           </Button>
         </div>

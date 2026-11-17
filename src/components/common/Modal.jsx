@@ -21,7 +21,7 @@ export default function Modal({ open, onClose, title, subtitle, children, footer
   if (!open) return null
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true">
       <button
         type="button"
         aria-label="Close dialog"
@@ -30,7 +30,7 @@ export default function Modal({ open, onClose, title, subtitle, children, footer
       />
       <div
         className={cn(
-          'page-enter relative z-10 max-h-[90vh] w-full overflow-y-auto rounded-2xl shadow-float',
+          'page-enter relative z-10 max-h-[92dvh] w-full overflow-y-auto rounded-t-2xl shadow-float sm:max-h-[90vh] sm:rounded-2xl',
           size === 'sm' && 'max-w-md',
           size === 'md' && 'max-w-xl',
           size === 'lg' && 'max-w-3xl',
@@ -49,9 +49,9 @@ export default function Modal({ open, onClose, title, subtitle, children, footer
             </button>
           </div>
         )}
-        <div className="p-5">{children}</div>
+        <div className="p-4 sm:p-5">{children}</div>
         {footer && (
-          <div className="flex flex-wrap justify-end gap-2 border-t px-5 py-4" style={{ borderColor: 'var(--border-color)' }}>
+          <div className="flex flex-wrap justify-end gap-2 border-t px-4 py-4 [&>button]:flex-1 sm:px-5 sm:[&>button]:flex-none" style={{ borderColor: 'var(--border-color)' }}>
             {footer}
           </div>
         )}

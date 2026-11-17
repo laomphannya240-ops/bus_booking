@@ -54,8 +54,8 @@ export default function SearchForm({ onSearch, className = '' }) {
 
   return (
     <form onSubmit={handleSubmit(submit)} className={className}>
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-[1fr_auto_1fr_1fr_auto] xl:items-end">
-        <div>
+      <div className="search-form-grid">
+        <div className="search-from">
           <label className="label-base flex items-center gap-1.5"><MapPin size={13} /> {t('home.fromProvince')}</label>
           <select className="input-base" {...register('from', { valueAsNumber: true })} aria-invalid={Boolean(errors.from)}>
             {provinces.map((province) => (
@@ -71,14 +71,14 @@ export default function SearchForm({ onSearch, className = '' }) {
             setValue('from', watch('to'))
             setValue('to', currentFrom)
           }}
-          className="btn-outline mx-auto h-10 w-10 !rounded-full !p-0 xl:mb-0.5"
+          className="search-swap btn-outline mb-0.5 h-10 w-10 self-end !rounded-full !p-0 xl:mb-0.5"
           title={t('home.swap')}
           aria-label={t('home.swap')}
         >
           <ArrowRight size={16} className="rotate-90 xl:rotate-0" />
         </button>
 
-        <div>
+        <div className="search-to">
           <label className="label-base flex items-center gap-1.5"><MapPin size={13} /> {t('home.toProvince')}</label>
           <select className="input-base" {...register('to', { valueAsNumber: true })} aria-invalid={Boolean(errors.to)}>
             {provinces.map((province) => (
@@ -87,7 +87,7 @@ export default function SearchForm({ onSearch, className = '' }) {
           </select>
         </div>
 
-        <div>
+        <div className="search-date">
           <label className="label-base flex items-center gap-1.5"><CalendarDays size={13} /> {t('home.departureDate')}</label>
           <input
             type="date"
@@ -98,7 +98,7 @@ export default function SearchForm({ onSearch, className = '' }) {
           />
         </div>
 
-        <div>
+        <div className="search-passengers">
           <label className="label-base flex items-center gap-1.5"><Users size={13} /> {t('home.passengersCount')}</label>
           <select className="input-base" {...register('passengers', { valueAsNumber: true })}>
             {[1, 2, 3, 4, 5, 6].map((count) => (

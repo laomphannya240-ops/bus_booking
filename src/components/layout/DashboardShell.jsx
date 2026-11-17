@@ -29,7 +29,7 @@ export default function DashboardShell({ groups, title, subtitle }) {
 
       <aside
         className={cn(
-          'no-print fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r transition-transform duration-300 lg:translate-x-0',
+          'no-print fixed inset-y-0 left-0 z-40 flex w-64 max-w-[85vw] flex-col border-r transition-transform duration-300 lg:translate-x-0',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full',
         )}
         style={{ background: 'var(--surface)', borderColor: 'var(--border-color)' }}
@@ -99,7 +99,7 @@ export default function DashboardShell({ groups, title, subtitle }) {
               {userOpen && (
                 <>
                   <button type="button" className="fixed inset-0 z-10 cursor-default" aria-label="Close" onClick={() => setUserOpen(false)} />
-                  <div className="absolute right-0 z-20 mt-2 w-52 rounded-xl p-1 shadow-float" style={{ background: 'var(--surface)', border: '1px solid var(--border-color)' }}>
+                  <div className="absolute right-0 z-20 mt-2 w-52 max-w-[calc(100vw-2rem)] rounded-xl p-1 shadow-float" style={{ background: 'var(--surface)', border: '1px solid var(--border-color)' }}>
                     <div className="border-b px-3 py-2" style={{ borderColor: 'var(--border-color)' }}>
                       <p className="truncate text-sm font-bold">{user?.name?.en || user?.name}</p>
                       <p className="truncate text-xs text-muted">{user?.email}</p>
@@ -116,7 +116,7 @@ export default function DashboardShell({ groups, title, subtitle }) {
             </div>
           </div>
         </header>
-        <main key={location.pathname} className="page-enter p-4 sm:p-6">
+        <main key={location.pathname} className="page-enter p-4 pb-8 sm:p-6">
           <Outlet />
         </main>
       </div>
